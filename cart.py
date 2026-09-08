@@ -1,6 +1,7 @@
 
 # Shopping Cart Management System
 # Sprint 2 - Remove Item and Empty Cart
+# Sprint 3 - Input Validation and Final Testing
 
 cart = []
 
