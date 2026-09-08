@@ -209,3 +209,65 @@ def search_item(name):
     print("Item not found")
 search_item("Keyboard")
 search_item("Laptop")
+
+# =========================
+# SPRINT 4 - MENU
+# =========================
+
+while True:
+
+    print("\n===== SHOPPING CART =====")
+    print("1. Add Item")
+    print("2. View Cart")
+    print("3. Update Quantity")
+    print("4. Remove Item")
+    print("5. Search Item")
+    print("6. Calculate Total")
+    print("7. Apply Discount")
+    print("8. Show Item Count")
+    print("9. Empty Cart")
+    print("10. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        name = input("Enter item name: ")
+        price = float(input("Enter price: "))
+        quantity = int(input("Enter quantity: "))
+        add_item(name, price, quantity)
+
+    elif choice == "2":
+        view_cart()
+
+    elif choice == "3":
+        name = input("Enter item name: ")
+        quantity = int(input("Enter new quantity: "))
+        update_quantity(name, quantity)
+
+    elif choice == "4":
+        name = input("Enter item name: ")
+        remove_item(name)
+
+    elif choice == "5":
+        name = input("Enter item name: ")
+        search_item(name)
+
+    elif choice == "6":
+        calculate_total()
+
+    elif choice == "7":
+        discount = float(input("Enter discount percentage: "))
+        apply_discount(discount)
+
+    elif choice == "8":
+        show_item_count()
+
+    elif choice == "9":
+        empty_cart()
+
+    elif choice == "10":
+        print("Thank you for using Shopping Cart!")
+        break
+
+    else:
+        print("Invalid choice")
