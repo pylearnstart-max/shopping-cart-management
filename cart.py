@@ -178,4 +178,20 @@ def show_item_count():
     print("Total Items Count:", count)
 
 
-show_item_count()
+show_item_count()  
+
+def apply_discount(discount_percent):
+    total = 0
+
+    for item in cart:
+        total = total + (item["price"] * item["quantity"])
+
+    discount = total * discount_percent / 100
+    final_total = total - discount
+
+    print("Original Total:", total)
+    print("Discount:", discount)
+    print("Final Total:", final_total)
+
+
+apply_discount(10)
