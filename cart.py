@@ -171,3 +171,11 @@ def show_total():
 
     print("Cart Total:", total)
 
+def show_item_count():
+
+    count = len(cart)
+
+    print("Total Items:", count)
+
+
+show_item_count()
