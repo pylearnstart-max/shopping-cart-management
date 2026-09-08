@@ -175,7 +175,7 @@ def show_item_count():
 
     count = len(cart)
 
-    print(" Total Number of Items:", count)
+    print("Total Items Count:", count)
 
 
 show_item_count()
