@@ -180,7 +180,7 @@ def show_item_count():
 
 show_item_count()  
 
-def apply_discount(discount_percent):
+def apply_discount( discount_percent):
     total = 0
 
     for item in cart:
@@ -195,3 +195,17 @@ def apply_discount(discount_percent):
 
 
 apply_discount(10)
+
+def search_item(name):
+    for item in cart:
+        if item["name"].lower() == name.lower():
+            print(
+                item["name"],
+                "- Price:", item["price"],
+                "- Quantity:", item["quantity"]
+            )
+            return
+
+    print("Item not found")
+search_item("Keyboard")
+search_item("Laptop")
