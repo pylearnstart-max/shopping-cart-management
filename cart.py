@@ -1,6 +1,7 @@
 
-cart = []
+# Shopping Cart Management System
 
+cart = []
 
 # =========================
 # SPRINT 1
@@ -33,6 +34,7 @@ def add_item(name, price, quantity):
 
 # 2. View Cart
 def view_cart():
+
     print("\nShopping Cart:")
 
     if not cart:
@@ -55,6 +57,7 @@ def update_quantity(name, new_quantity):
         return
 
     for item in cart:
+
         if item["name"] == name:
             item["quantity"] = new_quantity
             print("Quantity updated successfully")
@@ -65,6 +68,7 @@ def update_quantity(name, new_quantity):
 
 # 4. Calculate Total
 def calculate_total():
+
     total = 0
 
     for item in cart:
@@ -81,6 +85,7 @@ def calculate_total():
 def remove_item(name):
 
     for item in cart:
+
         if item["name"] == name:
             cart.remove(item)
             print("Item removed successfully")
@@ -91,6 +96,7 @@ def remove_item(name):
 
 # 6. Empty Cart
 def empty_cart():
+
     cart.clear()
     print("Cart emptied successfully")
 
@@ -155,3 +161,4 @@ remove_item("Mobile")
 view_cart()
 
 calculate_total()
+
