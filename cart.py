@@ -163,4 +163,11 @@ remove_item("Mobile")
 view_cart()
 
 calculate_total()
+def show_total():
+    total = 0
+
+    for item in cart:
+        total = total + (item["price"] * item["quantity"])
+
+    print("Cart Total:", total)
 
