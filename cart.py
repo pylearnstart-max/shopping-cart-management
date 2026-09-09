@@ -1,15 +1,16 @@
-
 # Shopping Cart Management System
+# Sprint 1 - Basic Cart Operations
 # Sprint 2 - Remove Item and Empty Cart
-# Sprint 3 - Input Validation and Final Testing
+# Sprint 3 - Input Validation
+# Sprint 4 - Search, Discount, Item Count and Menu
 
 cart = []
 
+
 # =========================
-# SPRINT 1
+# 1. ADD ITEM
 # =========================
 
-# 1. Add Item
 def add_item(name, price, quantity):
 
     if name == "":
@@ -34,7 +35,10 @@ def add_item(name, price, quantity):
     print("Item added successfully")
 
 
-# 2. View Cart
+# =========================
+# 2. VIEW CART
+# =========================
+
 def view_cart():
 
     print("\nShopping Cart:")
@@ -51,7 +55,10 @@ def view_cart():
         )
 
 
-# 3. Update Quantity
+# =========================
+# 3. UPDATE QUANTITY
+# =========================
+
 def update_quantity(name, new_quantity):
 
     if new_quantity <= 0:
@@ -60,7 +67,7 @@ def update_quantity(name, new_quantity):
 
     for item in cart:
 
-        if item["name"] == name:
+        if item["name"].lower() == name.lower():
             item["quantity"] = new_quantity
             print("Quantity updated successfully")
             return
@@ -68,27 +75,33 @@ def update_quantity(name, new_quantity):
     print("Item not found")
 
 
-# 4. Calculate Total
+# =========================
+# 4. CALCULATE TOTAL
+# =========================
+
 def calculate_total():
 
     total = 0
 
     for item in cart:
-        total = total + (item["price"] * item["quantity"])
+        total = total + (
+            item["price"] * item["quantity"]
+        )
 
     print("Total:", total)
 
+    return total
+
 
 # =========================
-# SPRINT 2
+# 5. REMOVE ITEM
 # =========================
 
-# 5. Remove Item
 def remove_item(name):
 
     for item in cart:
 
-        if item["name"] == name:
+        if item["name"].lower() == name.lower():
             cart.remove(item)
             print("Item removed successfully")
             return
@@ -96,7 +109,10 @@ def remove_item(name):
     print("Item not found")
 
 
-# 6. Empty Cart
+# =========================
+# 6. EMPTY CART
+# =========================
+
 def empty_cart():
 
     cart.clear()
@@ -104,72 +120,24 @@ def empty_cart():
 
 
 # =========================
-# SPRINT 1 TESTING
+# 7. SHOW TOTAL
 # =========================
 
-print("\n--- Sprint 1 Testing ---")
-
-add_item("Laptop", 50000, 1)
-add_item("Mouse", 1000, 2)
-
-view_cart()
-
-update_quantity("Laptop", 2)
-
-view_cart()
-
-calculate_total()
-
-
-# =========================
-# SPRINT 2 TESTING
-# =========================
-
-print("\n--- Sprint 2 Testing ---")
-
-remove_item("Mouse")
-
-view_cart()
-
-empty_cart()
-
-view_cart()
-
-
-# =========================
-# SPRINT 3 TESTING
-# =========================
-
-print("\n--- Sprint 3 Testing ---")
-
-# Invalid item name
-add_item("", 50000, 1)
-
-# Invalid price
-add_item("Keyboard", -1000, 1)
-
-# Invalid quantity
-add_item("Monitor", 10000, 0)
-
-# Valid item
-add_item("Keyboard", 2000, 1)
-
-# Invalid update quantity
-update_quantity("Keyboard", 0)
-
-# Item not found
-remove_item("Mobile")
-
-view_cart()
-
-calculate_total()
 def show_total():
+
     total = 0
 
     for item in cart:
-        total = total + (item["price"] * item["quantity"])
+        total = total + (
+            item["price"] * item["quantity"]
+        )
 
     print("Cart Total:", total)
+
+
+# =========================
+# 8. SHOW ITEM COUNT
+# =========================
 
 def show_item_count():
 
@@ -178,13 +146,22 @@ def show_item_count():
     print("Total Items Count:", count)
 
 
-show_item_count()  
+# =========================
+# 9. APPLY DISCOUNT
+# =========================
 
-def apply_discount( discount_percent):
+def apply_discount(discount_percent):
+
+    if discount_percent < 0 or discount_percent > 100:
+        print("Discount must be between 0 and 100")
+        return
+
     total = 0
 
     for item in cart:
-        total = total + (item["price"] * item["quantity"])
+        total = total + (
+            item["price"] * item["quantity"]
+        )
 
     discount = total * discount_percent / 100
     final_total = total - discount
@@ -194,80 +171,175 @@ def apply_discount( discount_percent):
     print("Final Total:", final_total)
 
 
-apply_discount(10)
+# =========================
+# 10. SEARCH ITEM
+# =========================
 
 def search_item(name):
+
     for item in cart:
+
         if item["name"].lower() == name.lower():
+
             print(
                 item["name"],
                 "- Price:", item["price"],
                 "- Quantity:", item["quantity"]
             )
+
             return
 
     print("Item not found")
-search_item("Keyboard")
-search_item("Laptop")
+
+
+# =========================
+# MANUAL TESTING
+# =========================
+
+def manual_testing():
+
+    print("\n--- Sprint Testing ---")
+
+    add_item("Laptop", 50000, 1)
+    add_item("Mouse", 1000, 2)
+
+    view_cart()
+
+    update_quantity("Laptop", 2)
+
+    view_cart()
+
+    calculate_total()
+
+    remove_item("Mouse")
+
+    view_cart()
+
+    add_item("", 50000, 1)
+    add_item("Keyboard", -1000, 1)
+    add_item("Monitor", 10000, 0)
+
+    add_item("Keyboard", 2000, 1)
+
+    search_item("keyboard")
+
+    show_item_count()
+
+    apply_discount(10)
+
 
 # =========================
 # SPRINT 4 - MENU
 # =========================
 
-while True:
+def menu():
 
-    print("\n===== SHOPPING CART =====")
-    print("1. Add Item")
-    print("2. View Cart")
-    print("3. Update Quantity")
-    print("4. Remove Item")
-    print("5. Search Item")
-    print("6. Calculate Total")
-    print("7. Apply Discount")
-    print("8. Show Item Count")
-    print("9. Empty Cart")
-    print("10. Exit")
+    while True:
 
-    choice = input("Enter your choice: ")
+        print("\n===== SHOPPING CART =====")
+        print("1. Add Item")
+        print("2. View Cart")
+        print("3. Update Quantity")
+        print("4. Remove Item")
+        print("5. Search Item")
+        print("6. Calculate Total")
+        print("7. Apply Discount")
+        print("8. Show Item Count")
+        print("9. Empty Cart")
+        print("10. Exit")
 
-    if choice == "1":
-        name = input("Enter item name: ")
-        price = float(input("Enter price: "))
-        quantity = int(input("Enter quantity: "))
-        add_item(name, price, quantity)
+        choice = input("Enter your choice: ")
 
-    elif choice == "2":
-        view_cart()
+        if choice == "1":
 
-    elif choice == "3":
-        name = input("Enter item name: ")
-        quantity = int(input("Enter new quantity: "))
-        update_quantity(name, quantity)
+            try:
+                name = input("Enter item name: ")
+                price = float(input("Enter price: "))
+                quantity = int(input("Enter quantity: "))
 
-    elif choice == "4":
-        name = input("Enter item name: ")
-        remove_item(name)
+                add_item(name, price, quantity)
 
-    elif choice == "5":
-        name = input("Enter item name: ")
-        search_item(name)
+            except ValueError:
+                print("Invalid price or quantity")
 
-    elif choice == "6":
-        calculate_total()
 
-    elif choice == "7":
-        discount = float(input("Enter discount percentage: "))
-        apply_discount(discount)
+        elif choice == "2":
 
-    elif choice == "8":
-        show_item_count()
+            view_cart()
 
-    elif choice == "9":
-        empty_cart()
 
-    elif choice == "10":
-        print("Thank you for using Shopping Cart!")
-        break
+        elif choice == "3":
 
-    else:
-        print("Invalid choice")
+            try:
+                name = input("Enter item name: ")
+                quantity = int(input("Enter new quantity: "))
+
+                update_quantity(name, quantity)
+
+            except ValueError:
+                print("Invalid quantity")
+
+
+        elif choice == "4":
+
+            name = input("Enter item name: ")
+
+            remove_item(name)
+
+
+        elif choice == "5":
+
+            name = input("Enter item name: ")
+
+            search_item(name)
+
+
+        elif choice == "6":
+
+            calculate_total()
+
+
+        elif choice == "7":
+
+            try:
+                discount = float(
+                    input("Enter discount percentage: ")
+                )
+
+                apply_discount(discount)
+
+            except ValueError:
+                print("Invalid discount")
+
+
+        elif choice == "8":
+
+            show_item_count()
+
+
+        elif choice == "9":
+
+            empty_cart()
+
+
+        elif choice == "10":
+
+            print("Thank you for using Shopping Cart!")
+            break
+
+
+        else:
+
+            print("Invalid choice")
+
+
+# =========================
+# PROGRAM START
+# =========================
+
+if __name__ == "__main__":
+
+    # Uncomment this line only when you want manual testing.
+    # manual_testing()
+
+    menu()
