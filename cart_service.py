@@ -30,3 +30,4 @@ def remove_cart_item(name):
 def clear_cart():
 
     return empty_cart()
+# Developer 2 feature update
