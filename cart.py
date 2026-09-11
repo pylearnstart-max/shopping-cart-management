@@ -347,4 +347,8 @@ if __name__ == "__main__":
 
 # Developer 2 cart update
 
+<<<<<<< HEAD
 # Developer 1 update
+=======
+# Developer 2 new update
+>>>>>>> developer2/cart-update
